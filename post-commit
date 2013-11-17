@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. "./${GIT_DIR}/hooks/ltsvcs.sh"
+
+for f in "`git diff --name-only HEAD^ HEAD`"
+do
+  if [ -e "$f" ]; then
+    adjust_ts "$f"
+  fi
+done

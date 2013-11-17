@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. "./${GIT_DIR}/hooks/ltsvcs.sh"
+
+previous_sha=$1
+new_sha=$2
+for f in "`git diff --name-only $previous_sha $new_sha`"
+do
+  if [ -e "$f" ]; then
+    adjust_ts "$f"
+  fi
+done
